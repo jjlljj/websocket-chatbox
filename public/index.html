@@ -23,8 +23,10 @@
   <script>
   $(function () {
     var socket = io();
+    const userName = prompt('enter your username')
+    socket.emit('userName', userName)
     $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
+      socket.emit('chat message', `${userName}: ${$('#m').val()}`);
       $('#m').val('');
       return false;
     });
@@ -37,8 +39,6 @@
     socket.on('disconnect', msg => {
       $('#messages').append($('<li>').text(msg));
     })
-    const userName = prompt('enter your username')
-    socket.emit('userName', userName)
   });
   </script>
   </body>
