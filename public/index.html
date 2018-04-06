@@ -37,6 +37,8 @@
     socket.on('disconnect', msg => {
       $('#messages').append($('<li>').text(msg));
     })
+    const userName = prompt('enter your username')
+    socket.emit('userName', userName)
   });
   </script>
   </body>
