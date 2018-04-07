@@ -19,7 +19,7 @@ io.on('connection', socket => {
   })
 
   socket.on('disconnect', () => {
-    io.emit('disconnect', 'user has disconnected')
+    io.emit('disconnect', 'a user has disconnected')
     console.log('user disconnected')
   })
 })

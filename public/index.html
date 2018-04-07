@@ -26,12 +26,15 @@
     const userName = prompt('enter your username')
     socket.emit('userName', userName)
     $('form').submit(function(){
+      $('#messages').append($('<li>').text(`${userName}: ${$('#m').val()}`));
       socket.emit('chat message', `${userName}: ${$('#m').val()}`);
       $('#m').val('');
       return false;
     });
     socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
+      if ( !msg.includes(userName) ) {
+        $('#messages').append($('<li>').text(msg));
+      }
     });
     socket.on('new user', msg => {
       $('#messages').append($('<li>').text(msg));
